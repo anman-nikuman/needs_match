@@ -1,0 +1,15 @@
+<%= form_with url: admins_events_import_path, local: true do |f| %>
+  <%= f.file_field :file %>
+  <%= f.submit "インポート" %>
+<% end %>
+
+<% @branchs.each do |branch| %>
+  <p><%= branch.name %></p>
+<% end %>
+
+<% @events.each do |event| %>
+  <p>
+    <%= event.address %>
+    <%= event.date %>
+  </p>
+<% end %>

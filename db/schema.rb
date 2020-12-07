@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_224457) do
+ActiveRecord::Schema.define(version: 2020_12_06_092406) do
 
   create_table "branches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -23,14 +23,13 @@ ActiveRecord::Schema.define(version: 2020_12_05_224457) do
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "branch_id", null: false
     t.datetime "date", null: false
-    t.string "station"
+    t.string "station1"
     t.string "postal_code"
     t.integer "prefecture_code"
-    t.string "city"
-    t.string "street"
-    t.string "building"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.string "station2"
     t.index ["branch_id"], name: "index_events_on_branch_id"
   end
 
