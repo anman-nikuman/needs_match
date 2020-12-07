@@ -1,4 +1,17 @@
 class Event < ApplicationRecord
+  belongs_to :branch
+
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+  
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       event = new
@@ -32,7 +45,6 @@ class Event < ApplicationRecord
 
       event.attributes = event_hash_db.to_h.slice(*updatable_event_attributes)
 
-      p event
       event.save
     end
   end
@@ -41,7 +53,7 @@ class Event < ApplicationRecord
     if self.exists?
       return self.last.date.to_datetime
     else
-      return DateTime.new(2020, 12, 1, 0, 0, 0, 0 )
+      return DateTime.new(2020, 12, 1, 0, 0, 0, 0.375 )
     end
   end
 

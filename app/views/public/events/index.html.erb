@@ -1,2 +1,51 @@
-<h1>Public::Events#index</h1>
-<p>Find me in app/views/public/events/index.html.erb</p>
+<div class="container mt-5">
+
+  <h4>イベント一覧</h4>
+  <table class="table">
+   
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">日時</th>
+        <th scope="col">支部地域</th>
+        <th scope="col">　支部名</th>
+        <th scope="col">支部評価</th>
+        <th scope="col">最寄駅</th>
+        <th scope="col">会場</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @events.each do |e| %>
+        <tr>
+          <td><%= l e.date %></td>
+          <td><%= e.branch.area %></td>
+          <td><%= e.branch.name %></td>
+          <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
+          <td><%= e.station1 %></td>
+          <td>〒<%= e.postal_code %></td>
+          <td><%= e.prefecture_name %></td>
+          <td><%= e.address %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <!--ページネーション-->
+  <%= paginate @events %>
+
+  <!-- 星評価js -->
+  <script>
+    $('.star').raty({
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      },
+      path: '/assets/'
+    });
+  </script>
+  <!-- ここまで -->
+
+</div>
