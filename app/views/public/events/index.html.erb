@@ -13,8 +13,6 @@
         <th scope="col">会場</th>
         <th scope="col"></th>
         <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
       </tr>
     </thead>
 
@@ -25,12 +23,10 @@
           <td><%= e.branch.area %></td>
           <td><%= e.branch.name %></td>
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
-          <td><%= e.station %></td>
+          <td><%= e.station1 %></td>
           <td>〒<%= e.postal_code %></td>
           <td><%= e.prefecture_name %></td>
-          <td><%= e.city %></td>
-          <td><%= e.street %></td>
-          <td><%= e.building %></td>
+          <td><%= e.address %></td>
         </tr>
       <% end %>
     </tbody>

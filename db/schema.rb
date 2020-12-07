@@ -23,13 +23,12 @@ ActiveRecord::Schema.define(version: 2020_12_07_022511) do
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "branch_id", null: false
     t.datetime "date", null: false
-    t.string "station"
+    t.string "station1"
     t.string "postal_code"
-    t.string "city"
-    t.string "street"
-    t.string "building"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
+    t.string "station2"
     t.string "prefecture_code"
     t.index ["branch_id"], name: "index_events_on_branch_id"
   end
