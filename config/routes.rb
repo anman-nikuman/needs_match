@@ -5,4 +5,8 @@ Rails.application.routes.draw do
     get "/searches" => "searches#index"
   end
 
+  namespace :admins do
+    get 'events/new' => 'events#new'
+    post 'events/import' => 'events#import'
+  end
 end
