@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope module: :public do
+    root "events#index"
+  end
+
+  namespace :admins do
+    get 'events/new' => 'events#new'
+    post 'events/import' => 'events#import'
+  end
 end

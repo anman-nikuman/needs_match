@@ -13,4 +13,16 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require popper
+//= require bootstrap
+//= require jquery.raty.js
 //= require_tree .
+$(function() {
+  return $('#event_postcode').jpostal({
+    postcode: ['#event_postcode'],
+    address: {
+      '#event_prefecture_code': '%3'
+    },
+  });
+});
