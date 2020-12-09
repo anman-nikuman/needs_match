@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  devise_for :staffs
+
   scope module: :public do
     root "events#index"
+  end
+
+  namespace :staffs do
+    resources :events, only: [:index, :edit, :update, :destroy]
   end
 
   namespace :admins do

@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :branch
+  has_many :operations, dependent: :destroy
 
   include JpPrefecture
   jp_prefecture :prefecture_code
@@ -12,6 +13,7 @@ class Event < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
+  # イベント情報のcsvインポート
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       event = new
@@ -49,6 +51,7 @@ class Event < ApplicationRecord
     end
   end
 
+  # 開催日算出のため基準日を設定
   def self.dt_select
     if self.exists?
       return self.last.date.to_datetime
@@ -57,6 +60,7 @@ class Event < ApplicationRecord
     end
   end
 
+  # イベント情報のカラムを渡す
   def self.updatable_event_attributes
     ["branch_id", "date", "station1", "station2", "postal_code", "prefecture_code", "address"]
   end

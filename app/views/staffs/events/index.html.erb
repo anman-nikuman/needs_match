@@ -11,6 +11,7 @@
         <th scope="col">支部評価</th>
         <th scope="col">最寄駅</th>
         <th scope="col">会場</th>
+        <th scope="col">編集・削除</th>
       </tr>
     </thead>
 
@@ -23,6 +24,10 @@
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
           <td><%= e.station1 %></td>
           <td><%= e.prefecture_name %><%= e.address %></td>
+          <td>
+            <%= link_to  "編集", edit_staffs_event_path(e.id) %>
+            <%= link_to  "削除", staffs_event_path(e.id), method: :delete %>
+          </td>
         </tr>
       <% end %>
     </tbody>
