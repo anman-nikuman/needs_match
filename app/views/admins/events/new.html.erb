@@ -1,4 +1,9 @@
 <%= form_with url: admins_events_import_path, local: true do |f| %>
   <%= f.file_field :file %>
-  <%= f.submit "インポート" %>
+  <%= f.submit "イベントインポート" %>
+<% end %>
+
+<%= form_with url: admins_staffs_import_path, local: true do |f| %>
+  <%= f.file_field :file, accept: '.csv' %>
+  <%= f.submit "スタッフインポート" %>
 <% end %>
