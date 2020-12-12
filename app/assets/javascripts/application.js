@@ -19,10 +19,13 @@
 //= require jquery.raty.js
 //= require_tree .
 $(function() {
-  return $('#event_postcode').jpostal({
-    postcode: ['#event_postcode'],
-    address: {
-      '#event_prefecture_code': '%3'
-    },
+  $(document).on('turbolinks:load', () => {
+    $('#event_postal_code').jpostal({
+      postcode: ['#event_postal_code'],
+      address: {
+        '#event_prefecture_code': '%3',
+        '#event_address': '%4%5%6%7'
+      },
+    })
   });
 });

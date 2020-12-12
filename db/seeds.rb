@@ -13,16 +13,96 @@ Branch.create!(
 
 Event.create!(
   branch_id: "1",
-  date: "2020-12-10 13:00",
-  station1: "笹塚駅",
+  date: "2020-12-13 13:00",
+  station1: "新宿駅",
+  station2: "東京駅",
   postal_code: "1001701",
   prefecture_code: "13",
   address: "青ヶ島村青ヶ島村一円我が家"
 )
 
+Branch.create!(
+  name: "肉まん支部",
+  area: "東京都",
+  evaluation: "5"
+)
+
+Event.create!(
+  branch_id: "2",
+  date: "2020-12-19 13:00",
+  station1: "笹塚駅",
+  station2: "代田橋",
+  postal_code: "1001701",
+  prefecture_code: "13",
+  address: "青ヶ島村青ヶ島村一円どこか"
+)
+
+Event.create!(
+  branch_id: "1",
+  date: "2020-12-19 13:00",
+  station1: "笹塚駅",
+  station2: "代田橋",
+  postal_code: "1001701",
+  prefecture_code: "13",
+  address: "青ヶ島村青ヶ島村一円どこか"
+)
+
 Staff.create!(
-  family_name: "テスト",
+  family_name: "山田",
   given_name: "太郎",
-  email: "test@gmail.com",
-  password: "testtest"
+  email: "test@test",
+  password: "password",
+  is_deleted: false
+)
+
+Affiliation.create!(
+  branch_id: "1",
+  staff_id: "1"
+)
+
+Operation.create!(
+  event_id: "1",
+  staff_id: "1",
+  status: 0
+)
+
+Affiliation.create!(
+  branch_id: "1",
+  staff_id: "1"
+)
+
+Operation.create!(
+  event_id: "1",
+  staff_id: "1",
+  status: 0
+)
+
+Staff.create!(
+  family_name: "佐藤",
+  given_name: "二郎",
+  email: "test1@test",
+  password: "password",
+  is_deleted: false
+)
+
+Affiliation.create!(
+  branch_id: "2",
+  staff_id: "2"
+)
+
+Operation.create!(
+  event_id: "2",
+  staff_id: "2",
+  status: 0
+)
+
+Affiliation.create!(
+  branch_id: "1",
+  staff_id: "1"
+)
+
+Operation.create!(
+  event_id: "3",
+  staff_id: "1",
+  status: 0
 )
