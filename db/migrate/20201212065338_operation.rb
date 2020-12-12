@@ -1,4 +1,4 @@
-class CreateOperations < ActiveRecord::Migration[5.2]
+class Operation < ActiveRecord::Migration[5.2]
   def change
     create_table :operations do |t|
       t.references  :event,  foreign_key: true, null: false
