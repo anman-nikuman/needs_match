@@ -1,0 +1,25 @@
+<h4>スタッフ一覧</h4>
+  <table class="table">
+   
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">MN-ID</th>
+        <th scope="col">姓</th>
+        <th scope="col">名</th>
+        <th scope="col">email</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @staffs.each do |s| %>
+        <tr>
+          <td><%= s.nm_id %></td>
+          <td><%= s.family_name %></td>
+          <td><%= s.given_name %></td>
+          <td><%= s.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>

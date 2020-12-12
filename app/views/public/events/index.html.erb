@@ -1,5 +1,11 @@
 <div class="container mt-5">
-
+  <dl class="searchbox">
+  <%= search_form_for @q, url: searches_path do |f| %>
+    <%= f.label :prefecture_code, "都道府県" %>
+    <%= f.search_field :prefecture_code_eq %>
+    <%= f.submit "検索" %>
+  <% end %>
+</dl>
   <h4>イベント一覧</h4>
   <table class="table">
    
@@ -24,7 +30,6 @@
           <td><%= e.branch.name %></td>
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
           <td><%= e.station1 %></td>
-          <td>〒<%= e.postal_code %></td>
           <td><%= e.prefecture_name %></td>
           <td><%= e.address %></td>
         </tr>
