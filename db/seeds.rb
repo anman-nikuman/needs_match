@@ -14,27 +14,15 @@ Branch.create!(
 Event.create!(
   branch_id: "1",
   date: "2020-12-10 13:00",
-  station: "笹塚駅",
+  station1: "笹塚駅",
   postal_code: "1001701",
   prefecture_code: "13",
-  city: "青ヶ島村",
-  street: "青ヶ島村一円",
-  building: "我が家"
+  address: "青ヶ島村青ヶ島村一円我が家"
 )
 
-Branch.create!(
-  name: "肉まん支部",
-  area: "東京都",
-  evaluation: "5"
-)
-
-Event.create!(
-  branch_id: "2",
-  date: "2020-12-19 13:00",
-  station: "笹塚駅",
-  postal_code: "1001701",
-  prefecture_code: "13",
-  city: "青ヶ島村",
-  street: "青ヶ島村一円",
-  building: "どこか"
+Staff.create!(
+  family_name: "テスト",
+  given_name: "太郎",
+  email: "test@gmail.com",
+  password: "testtest"
 )
