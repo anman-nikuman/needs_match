@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     get 'events/new' => 'events#new'
     post 'events/import' => 'events#import'
     post 'staffs/import' => 'staffs#import'
+    get 'staffs' => 'staffs#index'
   end
 end
