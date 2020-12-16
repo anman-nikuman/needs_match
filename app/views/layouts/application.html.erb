@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <header>
+      <% if staff_signed_in? %>
+        <nav>
+          <ul class="navbar-right">
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_staff_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          </ul>
+        </nav>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

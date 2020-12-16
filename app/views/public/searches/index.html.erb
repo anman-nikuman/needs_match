@@ -1,19 +1,43 @@
 <div class="container">
-  <h4>検索結果：全<%= @event_seaches.count %>件</h4>
-  <table class="table mt-5">
-    <thead>
-      <th></th>
-      <th>　開催日時</th>
-      <th>イベント名</th>
+  <h4>イベント一覧</h4>
+  <table class="table">
+   
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">日時</th>
+        <th scope="col">支部地域</th>
+        <th scope="col">　支部名</th>
+        <th scope="col">支部評価</th>
+        <th scope="col">最寄駅</th>
+        <th scope="col">会場</th>
+      </tr>
     </thead>
-    <% @event_seaches.each do |e| %>
-      <tbody>
+
+    <tbody>
+      <% @events.each do |e| %>
         <tr>
           <td><%= l e.date %></td>
-          <td><%= e.area %></td>
+          <td><%= e.branch.area %></td>
+          <td><%= e.branch.name %></td>
+          <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
+          <td><%= e.station1 %></td>
+          <td><%= e.prefecture_name %><%= e.address %></td>
         </tr>
-      </tbody>
-    <% end %>
+      <% end %>
+    </tbody>
+  
   </table>
-  <%= paginate @event_seaches %>
+
+  <!-- 星評価js -->
+  <script>
+    $('.star').raty({
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      },
+      path: '/assets/'
+    });
+  </script>
+  <!-- ここまで -->
+
 </div>

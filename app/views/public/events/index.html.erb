@@ -1,11 +1,12 @@
 <div class="container mt-5">
-  <dl class="searchbox">
-  <%= search_form_for @q, url: searches_path do |f| %>
-    <%= f.label :prefecture_code, "都道府県" %>
-    <%= f.search_field :prefecture_code_eq %>
-    <%= f.submit "検索" %>
+  <%= search_form_for(@q, url: searches_path) do |f| %>
+    <%= f.label :evaluation, "星評価(以上)" %>
+    <%= f.number_field :branch_evaluation_gteq %><br>
+    <%= f.label :area, "　　　　地域" %>
+    <%= f.text_field :branch_area_cont %><br>
+  <%= f.submit %>
   <% end %>
-</dl>
+
   <h4>イベント一覧</h4>
   <table class="table">
    
@@ -15,6 +16,9 @@
         <th scope="col">支部地域</th>
         <th scope="col">　支部名</th>
         <th scope="col">支部評価</th>
+        <th scope="col">[主]</th>
+        <th scope="col">[幹]</th>
+        <th scope="col">[事]</th>
         <th scope="col">最寄駅</th>
         <th scope="col">会場</th>
       </tr>

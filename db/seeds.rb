@@ -13,7 +13,7 @@ Branch.create!(
 
 Event.create!(
   branch_id: "1",
-  date: "2020-12-13 13:00",
+  date: "2020-12-24 13:00",
   station1: "新宿駅",
   station2: "東京駅",
   postal_code: "1001701",
@@ -29,7 +29,7 @@ Branch.create!(
 
 Event.create!(
   branch_id: "2",
-  date: "2020-12-19 13:00",
+  date: "2020-12-26 13:00",
   station1: "笹塚駅",
   station2: "代田橋",
   postal_code: "1001701",
@@ -39,7 +39,7 @@ Event.create!(
 
 Event.create!(
   branch_id: "1",
-  date: "2020-12-19 13:00",
+  date: "2020-12-28 13:00",
   station1: "笹塚駅",
   station2: "代田橋",
   postal_code: "1001701",
@@ -48,6 +48,7 @@ Event.create!(
 )
 
 Staff.create!(
+  nm_id: "1",
   family_name: "山田",
   given_name: "太郎",
   email: "test@test",
@@ -78,6 +79,7 @@ Operation.create!(
 )
 
 Staff.create!(
+  nm_id: "2",
   family_name: "佐藤",
   given_name: "二郎",
   email: "test1@test",
