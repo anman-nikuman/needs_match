@@ -2,6 +2,6 @@ class Operation < ApplicationRecord
   belongs_to :event
   belongs_to :staff
 
-  enum status: { "予約済・募集中": 0, "運営者": 1, "幹事": 2, "事務局長":3 }
+  enum status: { 予約済・募集中: 0, 運営者: 1, 幹事: 2, 事務局長:3 }
 
 end

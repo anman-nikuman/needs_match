@@ -95,7 +95,7 @@ Affiliation.create!(
 Operation.create!(
   event_id: "2",
   staff_id: "2",
-  status: 0
+  status: 1
 )
 
 Affiliation.create!(
@@ -106,5 +106,5 @@ Affiliation.create!(
 Operation.create!(
   event_id: "3",
   staff_id: "1",
-  status: 0
+  status: 1
 )

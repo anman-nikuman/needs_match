@@ -16,9 +16,9 @@
         <th scope="col">支部地域</th>
         <th scope="col">　支部名</th>
         <th scope="col">支部評価</th>
-        <th scope="col">[主]</th>
-        <th scope="col">[幹]</th>
-        <th scope="col">[事]</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
         <th scope="col">最寄駅</th>
         <th scope="col">会場</th>
       </tr>
@@ -31,6 +31,17 @@
           <td><%= e.branch.area %></td>
           <td><%= e.branch.name %></td>
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
+          <% e.event_staffs.each do |e| %>
+            <% if e.operations.予約済・募集中 %>
+              <td>[予約済]<%= e.family_name %><%= e.given_name %></td>
+            <% elsif e.operations.運営者 %>
+              <td>[主]<%= e.family_name %><%= e.given_name %></td>
+            <% elsif e.operations.幹事 %>
+              <td>[幹]<%= e.family_name %><%= e.given_name %></td>
+            <% elsif e.operations.事務局長 %>
+              <td>[事]<%= e.family_name %><%= e.given_name %></td>
+            <% end %>
+          <%end%>
           <td><%= e.station1 %></td>
           <td><%= e.prefecture_name %><%= e.address %></td>
         </tr>
