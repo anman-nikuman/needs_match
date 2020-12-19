@@ -23,7 +23,7 @@ class Public::EventsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:evaluation_gteq, :area_cont)
+    params.require(:q).permit(:evaluation_gteq, :area_cont, :event_staffs_family_name_eq, :event_staffs_given_name_eq)
   end
 
 end

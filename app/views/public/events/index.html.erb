@@ -4,6 +4,10 @@
     <%= f.number_field :branch_evaluation_gteq %><br>
     <%= f.label :area, "　　　　地域" %>
     <%= f.text_field :branch_area_cont %><br>
+    <%= f.label :area, "　運営者(姓)" %>
+    <%= f.text_field :event_staffs_family_name_eq %><br>
+    <%= f.label :area, "　運営者(名)" %>
+    <%= f.text_field :event_staffs_given_name_eq %>
   <%= f.submit %>
   <% end %>
 
