@@ -2,7 +2,6 @@ class Public::EventsController < ApplicationController
 
   def index
     @q = Event.ransack(params[:q])
-    @events = @q.result(distinct: true)
     basis_day = Date.current.since(4.days).change(hour: 0, min: 0, sec: 0)
     @events = Event.where("date >= ?", basis_day).order(:date).page(params[:page]).per(50)
   end

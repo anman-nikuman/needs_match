@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid mt-5">
   <h4>イベント一覧</h4>
   <table class="table">
    
@@ -8,6 +8,9 @@
         <th scope="col">支部地域</th>
         <th scope="col">　支部名</th>
         <th scope="col">支部評価</th>
+        <th scope="col">主催者</th>
+        <th scope="col">幹事</th>
+        <th scope="col">事務局長</th>
         <th scope="col">最寄駅</th>
         <th scope="col">会場</th>
       </tr>
@@ -20,6 +23,35 @@
           <td><%= e.branch.area %></td>
           <td><%= e.branch.name %></td>
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
+          
+          <% if e.operations.present? %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "主催者" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "幹事" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "事務局長" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td>予約済・募集中</td>
+            <td>予約済・募集中</td>
+            <td>予約済・募集中</td>
+          <% end %>
+          
           <td><%= e.station1 %></td>
           <td><%= e.prefecture_name %><%= e.address %></td>
         </tr>

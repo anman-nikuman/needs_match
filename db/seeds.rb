@@ -64,19 +64,19 @@ Affiliation.create!(
 Operation.create!(
   event_id: "1",
   staff_id: "1",
-  status: 0
+  status: 2
 )
 
-Affiliation.create!(
-  branch_id: "1",
-  staff_id: "1"
-)
+# Affiliation.create!(
+#   branch_id: "1",
+#   staff_id: "1"
+# )
 
-Operation.create!(
-  event_id: "1",
-  staff_id: "1",
-  status: 0
-)
+# Operation.create!(
+#   event_id: "1",
+#   staff_id: "1",
+#   status: 0
+# )
 
 Staff.create!(
   nm_id: "2",
@@ -98,13 +98,13 @@ Operation.create!(
   status: 1
 )
 
-Affiliation.create!(
-  branch_id: "1",
-  staff_id: "1"
-)
+# Affiliation.create!(
+#   branch_id: "1",
+#   staff_id: "1"
+# )
 
-Operation.create!(
-  event_id: "3",
-  staff_id: "1",
-  status: 1
-)
+# Operation.create!(
+#   event_id: "3",
+#   staff_id: "1",
+#   status: 0
+# )

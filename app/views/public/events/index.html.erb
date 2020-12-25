@@ -1,12 +1,13 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
+  <h5>検索</h5>
   <%= search_form_for(@q, url: searches_path) do |f| %>
     <%= f.label :evaluation, "星評価(以上)" %>
-    <%= f.number_field :branch_evaluation_gteq %><br>
-    <%= f.label :area, "　　　　地域" %>
-    <%= f.text_field :branch_area_cont %><br>
+    <%= f.number_field :branch_evaluation_gteq %>
+    <%= f.label :area, "　支部地域" %>
+    <%= f.text_field :branch_area_cont %>
     <%= f.label :area, "　運営者(姓)" %>
-    <%= f.text_field :event_staffs_family_name_eq %><br>
-    <%= f.label :area, "　運営者(名)" %>
+    <%= f.text_field :event_staffs_family_name_eq %>
+    <%= f.label :area, "(名)" %>
     <%= f.text_field :event_staffs_given_name_eq %>
   <%= f.submit %>
   <% end %>
@@ -20,9 +21,9 @@
         <th scope="col">支部地域</th>
         <th scope="col">　支部名</th>
         <th scope="col">支部評価</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">主催者</th>
+        <th scope="col">幹事</th>
+        <th scope="col">事務局長</th>
         <th scope="col">最寄駅</th>
         <th scope="col">会場</th>
       </tr>
@@ -35,17 +36,35 @@
           <td><%= e.branch.area %></td>
           <td><%= e.branch.name %></td>
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
-          <% e.event_staffs.each do |e| %>
-            <% if e.operations.予約済・募集中 %>
-              <td>[予約済]<%= e.family_name %><%= e.given_name %></td>
-            <% elsif e.operations.運営者 %>
-              <td>[主]<%= e.family_name %><%= e.given_name %></td>
-            <% elsif e.operations.幹事 %>
-              <td>[幹]<%= e.family_name %><%= e.given_name %></td>
-            <% elsif e.operations.事務局長 %>
-              <td>[事]<%= e.family_name %><%= e.given_name %></td>
+          
+          <% if e.operations.present? %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "主催者" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
             <% end %>
-          <%end%>
+            <% e.operations.each do |o| %>
+              <% if o.status == "幹事" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "事務局長" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td>予約済・募集中</td>
+            <td>予約済・募集中</td>
+            <td>予約済・募集中</td>
+          <% end %>
+          
           <td><%= e.station1 %></td>
           <td><%= e.prefecture_name %><%= e.address %></td>
         </tr>
