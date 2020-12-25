@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :branch
   has_many :operations, dependent: :destroy
+  has_many :event_staffs, through: :operations, source: :staff
 
   include JpPrefecture
   jp_prefecture :prefecture_code

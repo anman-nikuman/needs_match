@@ -1,11 +1,17 @@
-<div class="container mt-5">
-  <dl class="searchbox">
-  <%= search_form_for @q, url: searches_path do |f| %>
-    <%= f.label :prefecture_code, "都道府県" %>
-    <%= f.search_field :prefecture_code_eq %>
-    <%= f.submit "検索" %>
+<div class="container-fluid mt-5">
+  <h5>検索</h5>
+  <%= search_form_for(@q, url: searches_path) do |f| %>
+    <%= f.label :evaluation, "星評価(以上)" %>
+    <%= f.number_field :branch_evaluation_gteq %>
+    <%= f.label :area, "　支部地域" %>
+    <%= f.text_field :branch_area_cont %>
+    <%= f.label :area, "　運営者(姓)" %>
+    <%= f.text_field :event_staffs_family_name_eq %>
+    <%= f.label :area, "(名)" %>
+    <%= f.text_field :event_staffs_given_name_eq %>
+  <%= f.submit %>
   <% end %>
-</dl>
+
   <h4>イベント一覧</h4>
   <table class="table">
    
@@ -15,6 +21,9 @@
         <th scope="col">支部地域</th>
         <th scope="col">　支部名</th>
         <th scope="col">支部評価</th>
+        <th scope="col">主催者</th>
+        <th scope="col">幹事</th>
+        <th scope="col">事務局長</th>
         <th scope="col">最寄駅</th>
         <th scope="col">会場</th>
       </tr>
@@ -27,6 +36,35 @@
           <td><%= e.branch.area %></td>
           <td><%= e.branch.name %></td>
           <td><div class="star" data-score="<%= e.branch.evaluation %>"></div></td>
+          
+          <% if e.operations.present? %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "主催者" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "幹事" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+            <% e.operations.each do |o| %>
+              <% if o.status == "事務局長" %>
+                <td><%= o.staff.family_name %><%= o.staff.given_name %></td>
+              <% else %>
+                <td>予約済・募集中</td>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td>予約済・募集中</td>
+            <td>予約済・募集中</td>
+            <td>予約済・募集中</td>
+          <% end %>
+          
           <td><%= e.station1 %></td>
           <td><%= e.prefecture_name %><%= e.address %></td>
         </tr>

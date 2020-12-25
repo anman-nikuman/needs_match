@@ -3,7 +3,6 @@ class Staffs::EventsController < ApplicationController
     basis_day = Date.current.since(4.days).change(hour: 0, min: 0, sec: 0)
     # my_branch = current_user.affiliation_branches
     my_branch = Staff.find(1).affiliation_branches
-    p Event.find(1).prefecture_name
     @events = Event.where("date >= ?", basis_day).where(branch_id: my_branch).order(:date).page(params[:page]).per(50)
   end
   
