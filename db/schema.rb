@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_051553) do
+ActiveRecord::Schema.define(version: 2020_12_12_065338) do
+
+  create_table "affiliations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "branch_id", null: false
+    t.bigint "staff_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_affiliations_on_branch_id"
+    t.index ["staff_id"], name: "index_affiliations_on_staff_id"
+  end
 
   create_table "branches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -18,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_051553) do
     t.integer "evaluation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["evaluation"], name: "index_branches_on_evaluation"
+    t.index ["name"], name: "index_branches_on_name", unique: true
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -31,6 +42,17 @@ ActiveRecord::Schema.define(version: 2020_12_12_051553) do
     t.string "station2"
     t.string "prefecture_code"
     t.index ["branch_id"], name: "index_events_on_branch_id"
+    t.index ["date"], name: "index_events_on_date"
+  end
+
+  create_table "operations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "staff_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_operations_on_event_id"
+    t.index ["staff_id"], name: "index_operations_on_staff_id"
   end
 
   create_table "staffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -46,8 +68,12 @@ ActiveRecord::Schema.define(version: 2020_12_12_051553) do
     t.datetime "updated_at", null: false
     t.integer "nm_id", null: false
     t.index ["email"], name: "index_staffs_on_email", unique: true
+    t.index ["family_name", "given_name"], name: "index_staffs_on_family_name_and_given_name"
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "affiliations", "branches"
+  add_foreign_key "affiliations", "staffs"
   add_foreign_key "events", "branches"
+  add_foreign_key "operations", "events"
 end

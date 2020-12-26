@@ -1,6 +1,8 @@
 class Branch < ApplicationRecord
   has_many :events, dependent: :destroy
+  has_many :affiliation, dependent: :destroy
 
+  # 支部情報をcsvインポート
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       if find_by(name: row["支部名"])
@@ -30,6 +32,7 @@ class Branch < ApplicationRecord
     end
   end
 
+  # 支部情報のカラムを渡す
   def self.updatable_branch_attributes
     ["name", "area", "evaluation"]
   end

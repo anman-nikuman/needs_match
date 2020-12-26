@@ -1,8 +1,11 @@
 class Staff < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :affiliations, dependent: :destroy
+  has_many :operations, dependent: :destroy
+  has_many :affiliation_branches, through: :affiliations, source: :branch
+  has_many :operation_events, through: :operations, source: :event
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
