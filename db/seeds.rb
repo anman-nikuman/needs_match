@@ -52,6 +52,7 @@ Staff.create!(
   given_name: "太郎",
   email: "test@test",
   password: "password",
+  nm_id: "1",
   is_deleted: false
 )
 
@@ -82,6 +83,7 @@ Staff.create!(
   given_name: "二郎",
   email: "test1@test",
   password: "password",
+  nm_id: "2",
   is_deleted: false
 )
 
