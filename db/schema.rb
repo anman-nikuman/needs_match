@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_25_170546) do
     t.string "home_postal_code", null: false
     t.string "home_address", null: false
     t.string "company_postal_code"
-    t.string "conpany_address"
+    t.string "company_address"
     t.date "expiration_date", null: false
     t.boolean "is_deleted", default: false, null: false
     t.string "email", default: "", null: false
