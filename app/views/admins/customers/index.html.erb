@@ -1,0 +1,25 @@
+<h4>会員一覧</h4>
+  <table class="table">
+   
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">NM-ID</th>
+        <th scope="col">姓</th>
+        <th scope="col">名</th>
+        <th scope="col">email</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @customers.each do |c| %>
+        <tr>
+          <td><%= c.nm_id %></td>
+          <td><%= c.family_name %></td>
+          <td><%= c.given_name %></td>
+          <td><%= c.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
