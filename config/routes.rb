@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-
-  devise_for :customers
   devise_for :staffs, controllers: {
-    sessions: 'staffs/sessions'
+    registrations: 'staffs/registrations',
+    sessions: 'staffs/sessions',
+    passwords: 'staffs/passwords'
+  }
+
+  devise_for :customers, controllers: {
+    registrations: 'customers/registrations',
+    sessions: 'customers/sessions',
+    passwords: 'customers/passwords'
   }
   
   scope module: :public do

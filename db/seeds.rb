@@ -13,7 +13,7 @@ Branch.create!(
 
 Event.create!(
   branch_id: "1",
-  date: "2020-12-24 13:00",
+  date: "2021-1-31 13:00",
   station1: "新宿駅",
   station2: "東京駅",
   postal_code: "1001701",
@@ -29,7 +29,7 @@ Branch.create!(
 
 Event.create!(
   branch_id: "2",
-  date: "2020-12-26 13:00",
+  date: "2021-1-31 13:00",
   station1: "笹塚駅",
   station2: "代田橋",
   postal_code: "1001701",
@@ -56,17 +56,6 @@ Staff.create!(
   is_deleted: false
 )
 
-Affiliation.create!(
-  branch_id: "1",
-  staff_id: "1"
-)
-
-Operation.create!(
-  event_id: "1",
-  staff_id: "1",
-  status: 2
-)
-
 # Affiliation.create!(
 #   branch_id: "1",
 #   staff_id: "1"
@@ -85,6 +74,17 @@ Staff.create!(
   email: "test1@test",
   password: "password",
   is_deleted: false
+)
+
+Affiliation.create!(
+  branch_id: "1",
+  staff_id: "1"
+)
+
+Operation.create!(
+  event_id: "1",
+  staff_id: "1",
+  status: 2
 )
 
 Affiliation.create!(

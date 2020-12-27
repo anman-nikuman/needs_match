@@ -1,0 +1,94 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "customers/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :nm_id %><br />
+    <%= f.text_field :nm_id, autofocus: true, autocomplete: "nm_id" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :family_name %><br />
+    <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :given_name %><br />
+    <%= f.text_field :given_name, autofocus: true, autocomplete: "given_name" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name_kana %><br />
+    <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_name %><br />
+    <%= f.text_field :company_name, autofocus: true, autocomplete: "company_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :department %><br />
+    <%= f.text_field :department, autofocus: true, autocomplete: "department" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :position %><br />
+    <%= f.text_field :position, autofocus: true, autocomplete: "position" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :industry %><br />
+    <%= f.text_field :industry, autofocus: true, autocomplete: "industry" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :home_postal_code %><br />
+    <%= f.text_field :home_postal_code, autofocus: true, autocomplete: "home_postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :home_address %><br />
+    <%= f.text_field :home_address, autofocus: true, autocomplete: "home_address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_postal_code %><br />
+    <%= f.text_field :company_postal_code, autofocus: true, autocomplete: "company_postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_address %><br />
+    <%= f.text_field :company_address, autofocus: true, autocomplete: "company_address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiration_date %><br />
+    <%= f.text_field :expiration_date, autofocus: true, autocomplete: "expiration_date" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "customers/shared/links" %>
