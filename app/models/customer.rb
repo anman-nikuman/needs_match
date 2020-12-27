@@ -13,8 +13,8 @@ class Customer < ApplicationRecord
       customer_hash = row.to_h
       customer_hash_db = customer_key.map {|x| [ x[1], customer_hash[x[0]] ]}.to_h
       
-      # customer_hash_db["branch_id"] = Branch.find_by(name: row.to_h["支部"]).id
-      # customer_hash_db["operation_id"] = Operation.find_by(staff_id: row.to_h["属性"]).id
+      customer_hash_db["branch_id"] = Branch.find_by(name: row.to_h["支部"]).id
+      customer_hash_db["operation_id"] = Operation.find_by(status: row.to_h["属性"])
       customer.attributes = customer_hash_db.to_h.slice(*updatable_customer_attributes)
       
       customer.save!
@@ -23,6 +23,8 @@ class Customer < ApplicationRecord
 
   def self.updatable_customer_attributes
     [
+     "branch_id",
+     "operation_id",
      "nm_id", 
      "family_name",
      "given_name",
