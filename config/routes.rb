@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   devise_for :customers, controllers: {
     registrations: 'customers/registrations',
     sessions: 'customers/sessions',
-    passwords: 'customers/passwords'
+    passwords: 'customers/passwords',
+    confirmations: 'customers/confirmations'
   }
+
+  devise_scope :customer do
+    patch "customers/confirmation", to: "customers/confirmations#confirm"
+  end
   
   scope module: :public do
     root 'events#index'
