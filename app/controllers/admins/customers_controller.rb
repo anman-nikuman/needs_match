@@ -5,9 +5,9 @@ class Admins::CustomersController < ApplicationController
   end
 
   def import
-    Customer.import(params[:file])
-    Brunch.import(params[:file])
-    Introduction.import(params[:file])
+    # Branch.import_customer(params[:file])
+    Customer.import_customer(params[:file])
+    Introduction.import_customer(params[:file])
     redirect_to admins_customers_path
   end
 

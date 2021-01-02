@@ -1,4 +1,5 @@
 class Staffs::EventsController < ApplicationController
+
   def index
     basis_day = Date.current.since(4.days).change(hour: 0, min: 0, sec: 0)
     # my_branch = current_user.affiliation_branches
@@ -8,7 +9,8 @@ class Staffs::EventsController < ApplicationController
   
   def edit
     # @branch = current_user.affiliation_branches
-    @branch = Staff.find(1).affiliation_branches
+    branch_id = Staff.find(1).affiliation_branches
+    @branch = Branch.find_by(id: branch_id)
     @event = Event.find(params[:id])
   end
 

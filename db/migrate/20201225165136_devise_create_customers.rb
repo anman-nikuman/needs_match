@@ -15,7 +15,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :home_postal_code
       t.string :home_address
       t.string :company_postal_code
-      t.string :conpany_address
+      t.string :company_address
       t.date :expiration_date
       t.boolean :is_deleted,        null: false, default: false
       #Ex:- :default =>''

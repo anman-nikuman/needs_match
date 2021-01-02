@@ -36,4 +36,20 @@ class Branch < ApplicationRecord
   def self.updatable_branch_attributes
     ["name", "area", "evaluation"]
   end
+
+  def self.import_customer(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      branch = find_by(name: row["支部"])
+      branch_key =[["支部", "name"]]
+      branch_hash = row.to_h
+      branch_hash_db = branch_key.map {|x| [ x[1], branch_hash[x[0]] ]}.to_h
+      branch.attributes = branch_hash_db.to_h.slice(*updatable_branch_customer_attributes)
+
+      branch.save!
+    end
+  end
+
+  def self.updatable_branch_customer_attributes
+    ["name"]
+  end
 end

@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_25_170546) do
     t.string "home_postal_code"
     t.string "home_address"
     t.string "company_postal_code"
-    t.string "conpany_address"
+    t.string "company_address"
     t.date "expiration_date"
     t.boolean "is_deleted", default: false, null: false
     t.string "email", default: "", null: false
@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(version: 2020_12_25_170546) do
   end
 
   create_table "introductions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "customer_id", null: false
-    t.integer "source", null: false
-    t.integer "destination", null: false
+    t.bigint "source_id", null: false
+    t.bigint "destination_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_introductions_on_customer_id"
+    t.index ["destination_id"], name: "index_introductions_on_destination_id"
+    t.index ["source_id"], name: "index_introductions_on_source_id"
   end
 
   create_table "operations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2020_12_25_170546) do
   add_foreign_key "affiliations", "branches"
   add_foreign_key "affiliations", "staffs"
   add_foreign_key "events", "branches"
-  add_foreign_key "introductions", "customers"
+  add_foreign_key "introductions", "customers", column: "destination_id"
+  add_foreign_key "introductions", "customers", column: "source_id"
   add_foreign_key "operations", "events"
 end
