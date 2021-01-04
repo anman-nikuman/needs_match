@@ -1,17 +1,25 @@
 class Introduction < ApplicationRecord
-  belongs_to :customer
+  belongs_to :destination, class_name: 'Customer'
+  belongs_to :source, class_name: 'Customer'
 
   def self.import_customer(file)
     CSV.foreach(file.path, headers: true) do |row|
-      introduction = find_by(source_id: row["紹介者コード"])
+      # if find_by(source_id: row["紹介者コード"])
+      #   next
+      # end
 
-      introduction_key = [["紹介者コード", "source_id"],["NO", "destination_id"]]
-      introduction_hash = row.to_h
-      introduction_hash_db = introduction_key.map {|x| [ x[1], introduction_hash[x[0]] ]}.to_h
+      introduction = new
       
+      source_code = row.to_h["紹介者コード"]
+      source_id = Customer.find_by(nm_id: source_code).id
+     
+      destination_code = row.to_h["NO"]
+      destination_id = Customer.find_by(nm_id: destination_code).id
+      
+      introduction_hash_db = { "source_id" => source_id, "destination_id" => destination_id }
+
       introduction.attributes = introduction_hash_db.to_h.slice(*updatable_introduction_attributes)
-      
-      introduction.save!
+      introduction.save
     end
   end
 
@@ -19,3 +27,7 @@ class Introduction < ApplicationRecord
     ["source_id", "destination_id"]
   end
 end
+
+# find_by・・・カラムを基にして１つレコードを取得
+# find・・・idを基にして探して該当したものを1つ取得
+# where・・・カラムを基にして該当したもの全部取得
