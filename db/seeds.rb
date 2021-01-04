@@ -108,3 +108,20 @@ Operation.create!(
 #   staff_id: "1",
 #   status: 0
 # )
+
+Customer.create(
+  nm_id: "1",
+  family_name: "林",
+  given_name: "淳也",
+  name_kana: "ハヤシジュンヤ",
+  company_name: "パン株式会社",
+  department: "製造部門",
+  position: "クリームパン製造",
+  industry: "小売業",
+  home_postal_code: "1234567",
+  home_address: "東京都XXXXXXX",
+  company_postal_code: "1234567",
+  company_address: "東京都CCCC",
+  email: "example@sss.com",
+  password: "password"
+)

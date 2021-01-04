@@ -7,3 +7,8 @@
   <%= f.file_field :file, accept: '.csv' %>
   <%= f.submit "スタッフインポート" %>
 <% end %>
+
+<%= form_with url: admins_customers_import_path, local: true do |f| %>
+  <%= f.file_field :file, accept: '.csv' %>
+  <%= f.submit "カスタマーインポート" %>
+<% end %>

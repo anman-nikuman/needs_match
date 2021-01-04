@@ -1,0 +1,50 @@
+<div class="container-fluid mt-5">
+  <h4>会員一覧</h4>
+  <table class="table">
+  
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">NM-ID</th>
+        <th scope="col">姓</th>
+        <th scope="col">名</th>
+        <th scope="col">カナ</th>
+        <th scope="col">email</th>
+        <th scope="col">会社名</th>
+        <th scope="col">部署</th>
+        <th scope="col">役職</th>
+        <th scope="col">業種</th>
+        <th scope="col">自宅住所</th>
+        <th scope="col"></th>
+        <th scope="col">会社住所</th>
+        <th scope="col"></th>
+        <th scope="col">会員有効期限</th>
+        <th scope="col">ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @customers.each do |c| %>
+        <tr>
+          <td><%= c.nm_id %></td>
+          <td><%= c.family_name %></td>
+          <td><%= c.given_name %></td>
+          <td><%= c.name_kana %></td>
+          <td><%= c.email %></td>
+          <td><%= c.company_name %></td>
+          <td><%= c.department %></td>
+          <td><%= c.position %></td>
+          <td><%= c.industry %></td>
+          <td><%= c.home_postal_code %></td>
+          <td><%= c.home_address %></td>
+          <td><%= c.company_postal_code %></td>
+          <td><%= c.company_address %></td>
+          <td><%= c.expiration_date %></td>
+          <% if c.is_deleted == false %>
+            <td>在籍中</td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
